@@ -1,12 +1,11 @@
 import { useGetMyUser, useUpdateMyUser } from '@/api/MyUserApi'
 import UserProfileForm from '@/forms/user-profile-form/UserProfileForm'
 import { useAuth } from '@clerk/clerk-react';
-import { Navigate, redirect } from 'react-router-dom';
-
 
 export default function UserProfilePage() {
     const { userId } = useAuth();
     const { updateUser, isLoading: isUpdateLoading } = useUpdateMyUser();
+    //@ts-ignore
     const { currentUser, isLoading: isGetLoading } = useGetMyUser(userId);
 
     if (isGetLoading) {
