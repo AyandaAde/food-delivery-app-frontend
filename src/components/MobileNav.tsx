@@ -41,7 +41,7 @@ const MobileNav = () => {
                             </Link>
                             {
                                 userId === "user_2cifQMBRzDlRIo3CjV5M5b4JuXh" &&
-                                <Link to="/user-profile" className="font-semibold hover:text-orange-500">
+                                <Link to="/manage-restaurant" className="font-semibold hover:text-orange-500">
                                     Manage Restaurant
                                 </Link>
                             }

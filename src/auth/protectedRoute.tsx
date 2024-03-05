@@ -2,7 +2,13 @@ import { useAuth } from "@clerk/clerk-react"
 import { Navigate, Outlet } from "react-router-dom";
 
 export default function ProtectedRoute() {
-    const { isSignedIn } = useAuth();
+    const { isSignedIn, isLoaded } = useAuth();
 
-    return isSignedIn ? (<Outlet />) : (<Navigate to="/" replace />)
+    if (!isLoaded) {
+        return null;
+    }
+    if (isSignedIn) {
+        return <Outlet />
+    }
+    return <Navigate to="/" replace />;
 }

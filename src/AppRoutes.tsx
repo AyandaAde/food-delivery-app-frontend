@@ -7,6 +7,7 @@ import { useAuth, useUser } from '@clerk/clerk-react';
 import { useCreateMyUser } from './api/MyUserApi';
 import UserProfilePage from './pages/UserProfilePage';
 import ProtectedRoute from './auth/protectedRoute';
+import ManageRestaurantPage from './pages/ManageRestaurantPage';
 
 const AppRoutes = () => {
     const { userId } = useAuth();
@@ -24,7 +25,18 @@ const AppRoutes = () => {
         <Routes>
             <Route path="/" element={<Layout showHero ><HomePage /></Layout>} />
             <Route element={<ProtectedRoute />}>
-                <Route path="/user-profile" element={<Layout><UserProfilePage /></Layout>} />
+                <Route path="/user-profile" element={
+                    <Layout>
+                        <UserProfilePage />
+                    </Layout>
+                } />
+            </Route>
+            <Route element={<ProtectedRoute />}>
+                <Route path="/manage-restaurant" element={
+                    <Layout>
+                        <ManageRestaurantPage />
+                    </Layout>
+                } />
             </Route>
             <Route path="*" element={<Navigate to="/not-found" />} />
             <Route path="/sign-in" element={<SignInPage />} />

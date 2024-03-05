@@ -40,7 +40,7 @@ export default function DesktopNav() {
                         {
                             userId === "user_2cifQMBRzDlRIo3CjV5M5b4JuXh" &&
                             <NavigationMenuItem>
-                                <Link to="/docs">
+                                <Link to="/manage-restaurant">
                                     <NavigationMenuLink className="font-semibold hover:text-orange-500">
                                         Manage Restaurant
                                     </NavigationMenuLink>

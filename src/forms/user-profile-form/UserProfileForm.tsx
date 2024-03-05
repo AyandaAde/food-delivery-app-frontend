@@ -7,11 +7,21 @@ import { LoadingButton } from "@/components/LoadingButton";
 import { Button } from "@/components/ui/button";
 import { User } from "@/types";
 import { useEffect } from "react";
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select";
 
 const formSchema = z.object({
     email: z.string().optional(),
     firstName: z.string().min(1, "first name is required"),
     lastName: z.string().min(1, "last name is required."),
+    role: z.string({
+        required_error: "Please select a role"
+    }),
     addressLine1: z.string().min(1, "address line 1 is required."),
     city: z.string().min(1, "city is required."),
     country: z.string().min(1, "country is required."),
@@ -36,6 +46,7 @@ export default function UserProfileForm({ onSave, isLoading, currentUser }: Prop
             addressLine1: "",
             city: "",
             country: "",
+            role: "",
         }
     });
 
@@ -104,6 +115,30 @@ export default function UserProfileForm({ onSave, isLoading, currentUser }: Prop
                         )}
                     />
                 </div>
+                <FormField
+                    control={form.control}
+                    name="role"
+                    render={({ field }) => (
+                        <FormItem className="w-full md:w-11/12">
+                            <FormLabel>Role</FormLabel>
+                            <Select
+                                {...field}
+                                onValueChange={field.onChange}
+                                defaultValue={field.value}
+                            >
+                                <FormControl>
+                                    <SelectTrigger>
+                                        <SelectValue placeholder="Select a role" />
+                                    </SelectTrigger>
+                                </FormControl>
+                                <SelectContent>
+                                    <SelectItem value="user">User</SelectItem>
+                                    <SelectItem value="admin">Admin</SelectItem>
+                                </SelectContent>
+                            </Select>
+                        </FormItem>
+                    )}
+                />
                 <div className="flex flex-col md:flex-row gap-4 w-full md:w-11/12">
                     <FormField
                         control={form.control}

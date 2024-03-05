@@ -10,9 +10,9 @@ const Hero = () => {
         <div className="flex flex-col md:flex-row justify-between pt-4 pb-16 items-center gap-y-3 bg-gradient-to-br dark:bg-gradient-to-tl from-violet-800 via-violet-500 to-amber-500 overflow-x-hidden">
             <img
                 src={hero}
-                className="w-full sm:w-1/2 max-h-[700px] object-cover "
+                className="w-full sm:w-3/5 max-h-[700px] object-cover relative right-24"
             />
-            <div className="mx-auto w-11/12 md:w-[350px] lg:w-[500px] flex flex-col items-center md:items-start gap-y-3 relative md:right-[6%]">
+            <div className="mx-auto w-11/12 md:w-[350px] lg:w-[500px] flex flex-col items-center md:items-start gap-y-3 relative md:right-[10%]">
                 <p className="flex flex-col gap-y-1 text-xl lg:text-2xl font-semibold text-gray-50 dark:text-white">
                     Craving something delicious? NomNom brings your favorite restaurants right to your doorstep, no matter what your taste buds desire. From steaming hot pizza to exotic curries, juicy burgers to fresh sushi, our vast selection will tantalize your senses and satisfy every hunger pang.
                     <br />
