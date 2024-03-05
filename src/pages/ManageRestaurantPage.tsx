@@ -28,6 +28,7 @@ export default function ManageRestaurantPage() {
     return (
         <ManageRestaurantForm
             restaurant={restaurant}
+            //@ts-ignore
             onSave={isEditing ? updateRestaurant : createRestaurant}
             isLoading={isCreateLoading || isUpdateLoading}
         />
