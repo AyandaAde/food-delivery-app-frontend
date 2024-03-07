@@ -4,8 +4,23 @@ import Typewriter from 'typewriter-effect';
 import { Button } from "./ui/button";
 import { Link } from "react-router-dom";
 import { PizzaIcon } from "lucide-react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const Hero = () => {
+    const [city, setCity] = useState();
+
+    useEffect(() => {
+        navigator.geolocation.getCurrentPosition(async (pos) => {
+            const { latitude, longitude } = pos.coords;
+            console.log(latitude, longitude);
+            const resp = await axios(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`)
+            const currentLocation = resp.data;
+            setCity(currentLocation.address.city);
+            console.log(city);
+        })
+
+    }, []);
     return (
         <div className="flex flex-col md:flex-row justify-between pt-4 pb-16 items-center gap-y-3 bg-gradient-to-br dark:bg-gradient-to-tl from-violet-800 via-violet-500 to-amber-500 overflow-x-hidden">
             <img
@@ -29,7 +44,7 @@ const Hero = () => {
                 </p>
                 <div className="flex flex-col min-[400px]:flex-row gap-3 mt-5">
                     <Link to={"#about"}><Button className="bg-purple-700">Read More</Button></Link>
-                    <Link to={"#order"}><Button className="bg-purple-700">Order Food <PizzaIcon className="ml-2" /></Button></Link>
+                    <Link to={`/search/${city ? city : "Harare"}`}><Button className="bg-purple-700">Order Food <PizzaIcon className="ml-2" /></Button></Link>
                 </div>
             </div>
         </div>

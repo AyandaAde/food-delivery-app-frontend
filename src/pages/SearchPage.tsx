@@ -1,0 +1,131 @@
+import { useSearchRestaurants } from "@/api/RestaurantApi";
+import CuisineFilter from "@/components/CuisineFilter";
+import PaginationSelector from "@/components/PaginationSelector";
+import SearchBar, { SearchForm } from "@/components/SearchBar";
+import SearchResultsCard from "@/components/SearchResultsCard";
+import SortOptionDropdown from "@/components/SortOptionDropdown";
+import { Loader2 } from "lucide-react";
+import { useState } from "react";
+import { Link, useParams } from "react-router-dom"
+
+export type SearchState = {
+    searchQuery: string;
+    page: number;
+    selectedCuisines: string[];
+    sortOption: string,
+}
+export default function SearchPage() {
+    const [searchState, setSearchState] = useState<SearchState>({
+        searchQuery: "",
+        page: 1,
+        selectedCuisines: [],
+        sortOption: "bestMatch",
+    });
+    const [isExpanded, setIsExpanded] = useState<boolean>(false);
+
+    const { city } = useParams();
+    const { results, isLoading } = useSearchRestaurants(searchState, city);
+
+    function setSearchQuery(searchFormData: SearchForm) {
+        setSearchState((prevState) => ({
+            ...prevState,
+            searchQuery: searchFormData.searchQuery,
+            page: 1,
+        }));
+    }
+
+    function resetSearch() {
+        setSearchState((prevState) => ({
+            ...prevState,
+            searchQuery: "",
+            page: 1,
+        }));
+    }
+
+    function setPage(page: number) {
+        setSearchState((prevState) => ({
+            ...prevState,
+            page,
+        }))
+    }
+
+    function setSelectedCuisines(selectedCuisines: string[]) {
+        setSearchState((prevState) => ({
+            ...prevState,
+            selectedCuisines,
+            page: 1,
+        }));
+    }
+
+    function setSortOption(sortOption: string) {
+        setSearchState((prevState) => ({
+            ...prevState,
+            sortOption,
+            page: 1,
+        }))
+    }
+
+    if (isLoading) {
+        //TODO: Add  loading skeleton here
+        <span><Loader2 className="animate-spin" />Loading</span>
+    }
+
+    if (!results?.data) {
+        return <span>No results found</span>
+    }
+
+    if (!city) {
+        //TODO: List all the restaurants in the database.
+        // return (
+        //     <div className="grid grid-cols-1 lg:grid-cols-[250px_1fr] gap-5">
+        //         <div id="cuisines-list">
+        //             Insert cuisines here.
+        //         </div>
+        //         <div id="main-content" className="flex flex-col">
+        //             <SearchBar searchQuery={searchState.searchQuery} onSubmit={setSearchQuery} placeHolder="Search by Cuisine or Restaurant Name" onReset={resetSearch} />
+        //             <div className="text-xl font-bold flex flex-col gap-3 justify-between lg:items-center lg:flex-row ">
+        //                 <span>
+        //                     {results.pagination.total} Restaurant(s) found in {city}{" "}
+        //                     <Link to="/" className="text-sm font-semibold underline cursor-pointer text-blue-500">Change Location</Link>
+        //                 </span>
+        //                 <div>
+        //                     Insert sort dropdown here.
+        //                     insert currency selector here
+        //                 </div>
+        //             </div>
+        //             {results.data.map((restaurant) => (
+        //                 <SearchResultsCard key={restaurant._id} restaurant={restaurant} />
+        //             ))}
+        //         </div>
+        //     </div>
+        // )
+    }
+    return (
+        <div className="grid grid-cols-1 lg:grid-cols-[250px_1fr] gap-5">
+            <div id="cuisines-list">
+                <CuisineFilter
+                    selectedCuisines={searchState.selectedCuisines}
+                    onChange={setSelectedCuisines}
+                    isExpanded={isExpanded}
+                    onExpandedClick={() => setIsExpanded(!isExpanded)}
+                />
+            </div>
+            <div id="main-content" className="flex flex-col">
+                <SearchBar searchQuery={searchState.searchQuery} onSubmit={setSearchQuery} placeHolder="Search by Cuisine or Restaurant Name" onReset={resetSearch} />
+                <div className="text-xl font-bold flex flex-col gap-3 justify-between lg:items-center lg:flex-row mt-2">
+                    <span>
+                        {results.pagination.total} Restaurant(s) found in {city}{" "}
+                        <Link to="/" className="text-sm font-semibold underline cursor-pointer text-blue-500">Change Location</Link>
+                    </span>
+                    <div>
+                        <SortOptionDropdown sortOption={searchState.sortOption} onChange={(value) => setSortOption(value)} />
+                    </div>
+                </div>
+                {results.data.map((restaurant) => (
+                    <SearchResultsCard key={restaurant._id} restaurant={restaurant} />
+                ))}
+                <PaginationSelector page={results.pagination.page} pages={results.pagination.pages} onPageChange={setPage} />
+            </div>
+        </div>
+    )
+}

@@ -8,6 +8,7 @@ import { useCreateMyUser } from './api/MyUserApi';
 import UserProfilePage from './pages/UserProfilePage';
 import ProtectedRoute from './auth/protectedRoute';
 import ManageRestaurantPage from './pages/ManageRestaurantPage';
+import SearchPage from './pages/SearchPage';
 
 const AppRoutes = () => {
     const { userId } = useAuth();
@@ -38,6 +39,7 @@ const AppRoutes = () => {
                     </Layout>
                 } />
             </Route>
+            <Route path="/search/:city" element={<Layout showHero={false}><SearchPage /></Layout>} />
             <Route path="*" element={<Navigate to="/" />} />
             <Route path="/sign-in" element={<SignInPage />} />
             <Route path="/sign-up" element={<SignUpPage />} />
