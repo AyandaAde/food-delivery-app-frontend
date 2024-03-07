@@ -70,12 +70,16 @@ export default function SearchPage() {
         <span><Loader2 className="animate-spin" />Loading</span>
     }
 
-    if (!results?.data) {
+    function openingFn() {
+        setOpening("Loading...");
         const timeOut = setTimeout(() => (
-            setOpening("No results found.")
+            setOpening("No results found, try typing a different location in the search bar on the homepage")
         ), 5000);
 
         timeOut;
+    }
+    if (!results?.data) {
+        openingFn();
         return <h1>{opening}</h1>;
     }
 
