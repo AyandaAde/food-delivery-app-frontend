@@ -6,10 +6,10 @@ import { formatPriceUSD } from "@/lib/formatPrice";
 
 type Props = {
     restaurant: Restaurant;
-    currency: string;
+    currency?: string;
 }
 
-export default function SearchResultsCard({ restaurant, currency }: Props) {
+export default function SearchResultsCard({ restaurant }: Props) {
     return (
         <Link to={`/detail/${restaurant._id}`} className="mt-3 grid lg:grid-cols-[2fr_3fr] gap-5 group">
             <AspectRatio ratio={16 / 6}>
