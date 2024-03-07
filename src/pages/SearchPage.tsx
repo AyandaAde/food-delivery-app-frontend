@@ -22,7 +22,7 @@ export default function SearchPage() {
         sortOption: "bestMatch",
     });
     const [isExpanded, setIsExpanded] = useState<boolean>(false);
-
+    const [opening, setOpening] = useState("Loading...");
     const { city } = useParams();
     const { results, isLoading } = useSearchRestaurants(searchState, city);
 
@@ -71,7 +71,12 @@ export default function SearchPage() {
     }
 
     if (!results?.data) {
-        return <span>No results found</span>
+        const timeOut = setTimeout(() => (
+            setOpening("No results found.")
+        ), 5000);
+
+        timeOut;
+        return <h1>{opening}</h1>;
     }
 
     if (!city) {
