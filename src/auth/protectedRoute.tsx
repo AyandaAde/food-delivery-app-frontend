@@ -10,5 +10,5 @@ export default function ProtectedRoute() {
     if (isSignedIn) {
         return <Outlet />
     }
-    return <Navigate to="/" replace />;
+    return <Navigate to="/sign-in" replace />;
 }
