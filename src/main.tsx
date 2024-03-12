@@ -6,6 +6,8 @@ import AppRoutes from './AppRoutes';
 import { ClerkProvider } from '@clerk/clerk-react';
 import { QueryClient, QueryClientProvider } from "react-query";
 import { Toaster } from "@/components/ui/sonner";
+import { Provider } from 'react-redux';
+import { store } from './store';
 
 //* Clerk publishable key import
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
@@ -25,8 +27,10 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <BrowserRouter>
       <QueryClientProvider client={queryClient}>
         <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
-          <AppRoutes />
-          <Toaster visibleToasts={1} richColors />
+          <Provider store={store}>
+            <AppRoutes />
+            <Toaster visibleToasts={1} richColors />
+          </Provider>
         </ClerkProvider>
       </QueryClientProvider>
     </BrowserRouter>

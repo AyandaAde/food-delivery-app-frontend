@@ -98,7 +98,6 @@ export const useGetMyUser = (userId: string) => {
     const { data: currentUser, isLoading, error } = useQuery("fetchCurrentUser", getMyUserRequest);
 
     if (error) {
-        toast.error(error.toString());
         return <Navigate to="/" replace />;
     }
     return {

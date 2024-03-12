@@ -16,8 +16,8 @@ export function formatPriceEUR(price: number) {
   return newPrice;
 }
 //* Yen
-export function formatPriceYEN(price: number) {
-  const convertedPrice = price * 0.00067;
+export function formatPriceJPY(price: number) {
+  const convertedPrice = price * 147.95;
   const newPrice = convertedPrice.toLocaleString("en-US", {
     style: "currency",
     currency: "JPY",

@@ -27,6 +27,7 @@ export default function SearchPage() {
     const { results, isLoading } = useSearchRestaurants(searchState, city);
 
     function setSearchQuery(searchFormData: SearchForm) {
+        setOpening("Loading...");
         setSearchState((prevState) => ({
             ...prevState,
             searchQuery: searchFormData.searchQuery,
@@ -35,6 +36,7 @@ export default function SearchPage() {
     }
 
     function resetSearch() {
+        setOpening("Loading...");
         setSearchState((prevState) => ({
             ...prevState,
             searchQuery: "",
@@ -43,6 +45,7 @@ export default function SearchPage() {
     }
 
     function setPage(page: number) {
+        setOpening("Loading...");
         setSearchState((prevState) => ({
             ...prevState,
             page,
@@ -50,6 +53,7 @@ export default function SearchPage() {
     }
 
     function setSelectedCuisines(selectedCuisines: string[]) {
+        setOpening("Loading...");
         setSearchState((prevState) => ({
             ...prevState,
             selectedCuisines,
@@ -58,6 +62,7 @@ export default function SearchPage() {
     }
 
     function setSortOption(sortOption: string) {
+        setOpening("Loading...");
         setSearchState((prevState) => ({
             ...prevState,
             sortOption,
@@ -69,17 +74,12 @@ export default function SearchPage() {
         //TODO: Add  loading skeleton here
         <span><Loader2 className="animate-spin" />Loading</span>
     }
-
-    function openingFn() {
-        setOpening("Loading...");
+    if (!results?.data) {
         const timeOut = setTimeout(() => (
-            setOpening("No results found, try typing a different location in the search bar on the homepage")
-        ), 5000);
+            setOpening("No results found.")
+        ), 10000);
 
         timeOut;
-    }
-    if (!results?.data) {
-        openingFn();
         return <h1>{opening}</h1>;
     }
 

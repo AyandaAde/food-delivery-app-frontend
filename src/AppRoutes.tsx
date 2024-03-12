@@ -9,6 +9,7 @@ import UserProfilePage from './pages/UserProfilePage';
 import ProtectedRoute from './auth/protectedRoute';
 import ManageRestaurantPage from './pages/ManageRestaurantPage';
 import SearchPage from './pages/SearchPage';
+import DetailPage from './pages/DetailPage';
 
 const AppRoutes = () => {
     const { userId } = useAuth();
@@ -40,6 +41,14 @@ const AppRoutes = () => {
                 } />
             </Route>
             <Route path="/search/:city" element={<Layout showHero={false}><SearchPage /></Layout>} />
+            <Route element={<ProtectedRoute />}>
+                <Route path="/detail/:restaurantId" element={
+                    <Layout showHero={false}>
+                        <DetailPage />
+                    </Layout>
+                }
+                />
+            </Route>
             <Route path="*" element={<Navigate to="/" />} />
             <Route path="/sign-in" element={<SignInPage />} />
             <Route path="/sign-up" element={<SignUpPage />} />

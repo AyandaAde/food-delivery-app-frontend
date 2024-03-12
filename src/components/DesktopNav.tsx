@@ -55,7 +55,7 @@ export default function DesktopNav() {
                         className="font-bold hover:text-purple-700 hover:bg-orange-300"
                     >
                         <SignedIn>
-                            <UserButton afterSignOutUrl='/sign-in' />
+                            <UserButton afterSignOutUrl="/" />
                         </SignedIn>
                         <SignedOut>
                             <Link to="/sign-in">Log In</Link>
