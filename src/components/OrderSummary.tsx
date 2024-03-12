@@ -9,7 +9,7 @@ import { Trash } from 'lucide-react';
 type Props = {
     restaurant: Restaurant
     cartItems: CartItem[];
-    removeFromCart: () => void;
+    removeFromCart: (cartItem: CartItem) => void;
 }
 
 export default function OrderSummary({ restaurant, cartItems, removeFromCart }: Props) {
