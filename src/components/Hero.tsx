@@ -29,7 +29,7 @@ const Hero = () => {
             />
             <div className="mx-auto w-11/12 md:w-[350px] lg:w-[500px] flex flex-col items-center md:items-start gap-y-3 relative md:right-[10%]">
                 <p className="flex flex-col gap-y-1 text-xl lg:text-2xl font-semibold text-gray-50 dark:text-white">
-                    Craving something delicious? NomNom brings your favorite restaurants right to your doorstep, no matter what your taste buds desire. From steaming hot pizza to exotic curries, juicy burgers to fresh sushi, our vast selection will tantalize your senses and satisfy every hunger pang.
+                    Craving something delicious? NomNom Nimbus brings your favorite restaurants right to your doorstep, no matter what your taste buds desire. From steaming hot pizza to exotic curries, juicy burgers to fresh sushi, our vast selection will tantalize your senses and satisfy every hunger pang.
                     <br />
                     <p className="italic font-semibold">
                         <Typewriter
