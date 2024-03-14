@@ -6,7 +6,6 @@ import OrderSummary from "@/components/OrderSummary";
 import RestaurantInfo from "@/components/RestaurantInfo";
 import { Card, CardFooter } from "@/components/ui/card";
 import { UserFormData } from "@/forms/user-profile-form/UserProfileForm";
-import { stringToHex } from "@/lib/stringToHex";
 import { CartItem, MenuItem } from "@/types";
 import { useAuth } from "@clerk/clerk-react";
 import { AspectRatio } from "@radix-ui/react-aspect-ratio";
@@ -17,8 +16,7 @@ export default function DetailPage() {
     const { restaurantId } = useParams();
     const { restaurant, isLoading } = useGetRestaurant(restaurantId);
     const { userId } = useAuth();
-    const dbUserId = stringToHex(userId).slice(-24);
-    const { createCheckoutSession, isLoading: isCheckoutLoading } = useCreateCheckoutSession(dbUserId);
+    const { createCheckoutSession, isLoading: isCheckoutLoading } = useCreateCheckoutSession(userId);
 
 
     const [cartItems, setCartItems] = useState<CartItem[]>(() => {

@@ -1,4 +1,5 @@
-import { useMutation } from "react-query";
+import { Order } from "@/types";
+import { useMutation, useQuery } from "react-query";
 import { toast } from "sonner";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
@@ -18,9 +19,9 @@ type CheckoutSessionRequest = {
     restaurantId: string;
 };
 
-export const useCreateCheckoutSession = (dbUserId: string) => {
+export const useCreateCheckoutSession = (userId: string) => {
     const createCheckoutSessionRequest = async (checkoutSessionRequest: CheckoutSessionRequest) => {
-        const response = await fetch(`${API_BASE_URL}/api/order/checkout/${dbUserId}/create-checkout-session`, {
+        const response = await fetch(`${API_BASE_URL}/api/order/checkout/${userId}/create-checkout-session`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -45,5 +46,28 @@ export const useCreateCheckoutSession = (dbUserId: string) => {
         createCheckoutSession,
         isLoading
     }
+}
+
+export function useGetMyOrders(userId: string) {
+    async function getMyOrdersRequest(): Promise<Order[]> {
+        const response = await fetch(`${API_BASE_URL}/api/order/${userId}`, {
+        });
+        if (!response.ok) {
+            throw new Error("Failed to get orders");
+        }
+
+        return response.json();
+    }
+
+    const { data: orders, isLoading } = useQuery(
+        "fetchMyOrders",
+        getMyOrdersRequest, {
+        refetchInterval: 5000,
+    });
+
+    return {
+        orders,
+        isLoading
+    };
 }
 

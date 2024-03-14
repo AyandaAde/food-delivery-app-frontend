@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import Layout from './layouts/layout';
 import HomePage from './pages/HomePage';
 import SignInPage from './routes/sign-in';
@@ -10,6 +10,8 @@ import ProtectedRoute from './auth/protectedRoute';
 import ManageRestaurantPage from './pages/ManageRestaurantPage';
 import SearchPage from './pages/SearchPage';
 import DetailPage from './pages/DetailPage';
+import NotFound from './pages/NotFound';
+import OrderStatusPage from './pages/OrderStatusPage';
 
 const AppRoutes = () => {
     const { userId } = useAuth();
@@ -49,9 +51,18 @@ const AppRoutes = () => {
                 }
                 />
             </Route>
-            <Route path="*" element={<Navigate to="/" />} />
+            <Route element={<ProtectedRoute />}>
+                <Route path="/order-status" element={
+                    <Layout showHero={false}>
+                        <OrderStatusPage />
+                    </Layout>
+                }
+                />
+            </Route>
+            {/* <Route path="*" element={<Navigate to="/" />} /> */}
             <Route path="/sign-in" element={<SignInPage />} />
             <Route path="/sign-up" element={<SignUpPage />} />
+            <Route path="*" element={<Layout showHero={false} ><NotFound /></Layout>} />
         </Routes>
     )
 }
