@@ -23,9 +23,9 @@ export default function OrderSummary({ restaurant, cartItems, removeFromCart }: 
 
         // return parseInt((totalWithDelivery / 100).toFixed(2));
 
-        const totalInCence = cartItems.reduce((total, cartItem) => (total + cartItem.price * cartItem.quantity), 0);
+        const totalInCents = cartItems.reduce((total, cartItem) => (total + cartItem.price * cartItem.quantity), 0);
 
-        const totalWithDelivery = totalInCence + restaurant.deliveryPrice;
+        const totalWithDelivery = totalInCents + restaurant.deliveryPrice;
         return parseInt((totalWithDelivery / 100).toFixed(2));
 
     }

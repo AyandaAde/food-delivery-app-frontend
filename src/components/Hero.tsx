@@ -42,10 +42,7 @@ const Hero = () => {
                         />
                     </p>
                 </p>
-                <div className="flex flex-col min-[400px]:flex-row gap-3 mt-5">
-                    <Link to={"#about"}><Button className="bg-purple-700">Read More</Button></Link>
-                    <Link to={`/search/${city ? city : "Harare"}`}><Button className="bg-purple-700">Order Food <PizzaIcon className="ml-2" /></Button></Link>
-                </div>
+                <Link to={`/search/${city ? city : "Harare"}`} className="mt-2"><Button className="bg-purple-700">Order Food <PizzaIcon className="ml-2" /></Button></Link>
             </div>
         </div>
     )

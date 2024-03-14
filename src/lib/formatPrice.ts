@@ -1,8 +1,14 @@
 export function formatPriceUSD(price: number) {
-  return price.toLocaleString("en-US", {
+  const usdPrice = new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "USD",
-  });
+  }).format(price);
+
+  return usdPrice;
+  // return price.toLocaleString("en-US", {
+  //   style: "currency",
+  //   currency: "USD",
+  // });
 }
 
 //* Euro
