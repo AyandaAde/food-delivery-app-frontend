@@ -2,7 +2,6 @@ import { Restaurant } from "@/types";
 import { Link } from "react-router-dom";
 import { AspectRatio } from "./ui/aspect-ratio";
 import { BanknoteIcon, ClockIcon, DotIcon } from "lucide-react";
-import { formatPriceUSD } from "@/lib/formatPrice";
 
 type Props = {
     restaurant: Restaurant;
@@ -34,7 +33,7 @@ export default function SearchResultsCard({ restaurant }: Props) {
                             {restaurant.estimatedDeliveryTime} mins
                         </div>
                         <div className="flex items-center gap-1">
-                            <BanknoteIcon /> Delivery from {formatPriceUSD(parseInt((restaurant.deliveryPrice / 100).toFixed(2)))}
+                            <BanknoteIcon /> Delivery from {(restaurant.deliveryPrice / 100).toFixed(2)}
                         </div>
                     </div>
                 </div>

@@ -1,6 +1,5 @@
 import { CartItem, Restaurant } from '@/types'
 import { CardContent, CardHeader, CardTitle } from './ui/card'
-import { formatPriceUSD } from '@/lib/formatPrice'
 import { Badge } from './ui/badge';
 import { Separator } from './ui/separator';
 import { Trash } from 'lucide-react';
@@ -17,7 +16,7 @@ export default function OrderSummary({ restaurant, cartItems, removeFromCart }: 
         const totalInCents = cartItems.reduce((total, cartItem) => (total + cartItem.price * cartItem.quantity), 0);
 
         const totalWithDelivery = totalInCents + restaurant.deliveryPrice;
-        return parseInt((totalWithDelivery / 100).toFixed(2));
+        return (totalWithDelivery / 100).toFixed(2);
 
     }
     return (
@@ -25,7 +24,7 @@ export default function OrderSummary({ restaurant, cartItems, removeFromCart }: 
             <CardHeader>
                 <CardTitle className="text-2xl font-bold tracking-tight flex justify-between">
                     <span>Your Order</span>
-                    <span>{formatPriceUSD(getTotalPrice())}</span>
+                    <span>${getTotalPrice()}</span>
                 </CardTitle>
             </CardHeader>
             <CardContent className="flex flex-col gap-5">
@@ -44,14 +43,14 @@ export default function OrderSummary({ restaurant, cartItems, removeFromCart }: 
                                 size={20}
                                 onClick={() => removeFromCart(item)}
                             />
-                            {formatPriceUSD(parseInt(((item.price * item.quantity) / 100).toFixed(2)))}
+                            ${((item.price * item.quantity) / 100).toFixed(2)}
                         </span>
                     </div>
                 ))}
                 <Separator className="my-1" />
                 <div className="flex justify-between">
                     <span>Delivery</span>
-                    <span>{formatPriceUSD(parseInt((restaurant.deliveryPrice / 100).toFixed(2)))}</span>
+                    <span>${(restaurant.deliveryPrice / 100).toFixed(2)}</span>
                 </div>
                 <Separator className="my-1" />
 

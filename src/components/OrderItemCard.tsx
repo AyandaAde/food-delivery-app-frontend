@@ -55,7 +55,7 @@ export default function OrderItemCard({ order }: Props) {
                         </span>
                     </div>
                     <div>
-                        Time:
+                        Time Ordered:
                         <span className="ml-2 font-normal">
                             {getTime()}
                         </span>
