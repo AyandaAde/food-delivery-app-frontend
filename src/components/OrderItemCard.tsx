@@ -1,6 +1,5 @@
 import { Order, OrderStatus } from "@/types"
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card"
-import { formatPriceUSD } from "@/lib/formatPrice";
 import { Separator } from "./ui/separator";
 import { Badge } from "./ui/badge";
 import { Label } from "./ui/label";
@@ -63,7 +62,7 @@ export default function OrderItemCard({ order }: Props) {
                     <div>
                         Total Cost:
                         <span className="ml-2 font-normal">
-                            {formatPriceUSD(parseInt((order.totalAmount / 100).toFixed(2)))}
+                            ${(order.totalAmount / 100).toFixed(2)}
                         </span>
                     </div>
                 </CardTitle>
