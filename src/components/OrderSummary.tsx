@@ -1,7 +1,6 @@
 import { CartItem, Restaurant } from '@/types'
 import { CardContent, CardHeader, CardTitle } from './ui/card'
 import { formatPriceUSD } from '@/lib/formatPrice'
-// import { useSelector } from "react-redux";
 import { Badge } from './ui/badge';
 import { Separator } from './ui/separator';
 import { Trash } from 'lucide-react';
@@ -13,16 +12,8 @@ type Props = {
 }
 
 export default function OrderSummary({ restaurant, cartItems, removeFromCart }: Props) {
-    // const { total } = useSelector(
-    //     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    //     (store: any) => store.cart
-    // );
 
     function getTotalPrice() {
-        // const totalWithDelivery = total + restaurant.deliveryPrice;
-
-        // return parseInt((totalWithDelivery / 100).toFixed(2));
-
         const totalInCents = cartItems.reduce((total, cartItem) => (total + cartItem.price * cartItem.quantity), 0);
 
         const totalWithDelivery = totalInCents + restaurant.deliveryPrice;

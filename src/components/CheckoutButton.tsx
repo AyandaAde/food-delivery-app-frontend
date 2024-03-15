@@ -4,7 +4,9 @@ import { Button } from "./ui/button";
 import { LoadingButton } from "./LoadingButton";
 import UserProfileForm, { UserFormData } from "@/forms/user-profile-form/UserProfileForm";
 import { Dialog, DialogContent, DialogTrigger } from "./ui/dialog";
-import { useGetMyUser } from "@/api/MyUserApi";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getUserDetails } from "@/features/user/userSlice";
 
 type Props = {
     onCheckout: (userFormData: UserFormData) => void;
@@ -14,8 +16,18 @@ type Props = {
 
 export default function CheckoutButton({ onCheckout, disabled, isLoading }: Props) {
     const { userId, isLoaded: isAuthLoaded } = useAuth();
-    //@ts-ignore
-    const { currentUser, isLoading: isGetUserLoading } = useGetMyUser(userId);
+    const { currentUser, isLoading: isGetUserLoading } = useSelector(
+
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        (state: any) => state.user
+    );
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        //@ts-ignore
+        dispatch(getUserDetails(userId));
+    }, []);
+
     if (!isAuthLoaded || !currentUser || isLoading) {
         return <LoadingButton />
     }
@@ -38,7 +50,7 @@ export default function CheckoutButton({ onCheckout, disabled, isLoading }: Prop
                             Checkout
                         </Button>
                     </DialogTrigger>
-                    <DialogContent className="max-w-[45px] md:min-w-[700px] bg-gray-50">
+                    <DialogContent className="max-w-[300px] md:min-w-[700px] bg-gray-50">
                         <UserProfileForm
                             onSave={onCheckout}
                             currentUser={currentUser}

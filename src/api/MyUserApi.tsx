@@ -1,7 +1,5 @@
-import { useMutation, useQuery } from "react-query";
+import { useMutation } from "react-query";
 import { toast } from "sonner";
-import { User } from "../types";
-import { Navigate } from "react-router-dom";
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 type CreateUserRequest = {
@@ -82,32 +80,3 @@ export const useUpdateMyUser = () => {
     }
 };
 
-
-export const useGetMyUser = (userId: string) => {
-
-    const getMyUserRequest = async (): Promise<User> => {
-
-        const response = await fetch(`${API_BASE_URL}/api/my/user/${userId}`, {
-            method: "GET",
-            headers: {
-                "Content-type": "application/json",
-            },
-        });
-
-        if (!response.ok) {
-            throw new Error("Failed to fetch user.");
-        }
-
-        return response.json();
-    };
-
-    const { data: currentUser, isLoading, error } = useQuery("fetchCurrentUser", getMyUserRequest);
-
-    if (error) {
-        return <Navigate to="/" replace />;
-    }
-    return {
-        currentUser,
-        isLoading,
-    }
-};

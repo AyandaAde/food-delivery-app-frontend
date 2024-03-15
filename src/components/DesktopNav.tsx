@@ -17,12 +17,12 @@ import { Link } from "react-router-dom";
 
 export default function DesktopNav() {
     const { userId } = useAuth();
-
+    const admins = ["user_2cifQMBRzDlRIo3CjV5M5b4JuXh"];
     return (
         <NavigationMenu>
             <NavigationMenuList>
                 <SignedIn>
-                    <div className="flex felx-row gap-3">
+                    <div className="flex flex-row gap-3">
                         <NavigationMenuItem>
                             <Link to="/order-status">
                                 <NavigationMenuLink className="font-semibold hover:text-orange-500">
@@ -38,7 +38,7 @@ export default function DesktopNav() {
                             </Link>
                         </NavigationMenuItem>
                         {
-                            userId === "user_2cifQMBRzDlRIo3CjV5M5b4JuXh" &&
+                            admins.includes(userId) &&
                             <NavigationMenuItem>
                                 <Link to="/manage-restaurant">
                                     <NavigationMenuLink className="font-semibold hover:text-orange-500">

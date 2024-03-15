@@ -52,6 +52,7 @@ export type OrderStatus =
   | "inProgress"
   | "outForDelivery"
   | "delivered";
+
 export type Order = {
   _id: string;
   restaurant: Restaurant;

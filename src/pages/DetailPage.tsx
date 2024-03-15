@@ -18,7 +18,6 @@ export default function DetailPage() {
     const { userId } = useAuth();
     const { createCheckoutSession, isLoading: isCheckoutLoading } = useCreateCheckoutSession(userId);
 
-
     const [cartItems, setCartItems] = useState<CartItem[]>(() => {
         const storedCartItems = sessionStorage.getItem(`cartItems-${restaurantId}`);
         return storedCartItems ? JSON.parse(storedCartItems) : [];
@@ -106,7 +105,7 @@ export default function DetailPage() {
                     <RestaurantInfo restaurant={restaurant} />
                     <span className="text-2xl font-bold tracking-tight">Menu</span>
                     {restaurant.menuItems.map((menuItem) => (
-                        <MenuItemComp menuItem={menuItem} addToCart={() => addToCart(menuItem)} />
+                        <MenuItemComp key={menuItem._id} menuItem={menuItem} addToCart={() => addToCart(menuItem)} />
                     ))}
                 </div>
                 <div>

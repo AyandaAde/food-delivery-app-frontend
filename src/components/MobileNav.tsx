@@ -10,11 +10,11 @@ import { Link } from "react-router-dom";
 const MobileNav = () => {
     const { userId } = useAuth();
     const { user } = useUser();
-
+    const admins = ["user_2cifQMBRzDlRIo3CjV5M5b4JuXh"];
     return (
         <Sheet>
             <SheetTrigger>
-                <Menu className="text-purpl-700" />
+                <Menu className="text-purple-700" />
             </SheetTrigger>
             <SheetContent>
                 <SheetTitle className="flex mt-5 px-3 justify-between items-center">
@@ -40,7 +40,7 @@ const MobileNav = () => {
                                 User profile
                             </Link>
                             {
-                                userId === "user_2cifQMBRzDlRIo3CjV5M5b4JuXh" &&
+                                admins.includes(userId) &&
                                 <Link to="/manage-restaurant" className="font-semibold hover:text-orange-500">
                                     Manage Restaurant
                                 </Link>

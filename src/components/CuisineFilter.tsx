@@ -31,7 +31,7 @@ export default function CuisineFilter({ onChange, selectedCuisines, isExpanded, 
                 <div className="text-md font-semibold mb-2">Filter By Cuisine</div>
                 <div onClick={handleCuisinesReset} className="text-sm font-semibold mb-2 underline cursor-pointer text-blue-500">Reset Filters</div>
             </div>
-            <div className="space-y-2 flex flex-col">
+            <div className="spa ce-y-2 flex flex-col">
                 {cuisineList.slice(0, isExpanded ? cuisineList.length : 7).map((cuisine, index) => {
                     const isSelected = selectedCuisines.includes(cuisine);
                     return <div className="flex" key={index}>

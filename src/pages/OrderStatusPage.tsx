@@ -1,4 +1,4 @@
-import { useGetMyOrders } from "@/api/OrderApi"
+import { useGetMyOrders } from "@/api/OrderApi";
 import OrderStatusDetail from "@/components/OrderStatusDetail";
 import OrderStatusHeader from "@/components/OrderStatusHeader";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
@@ -12,7 +12,7 @@ export default function OrderStatusPage() {
     const { orders, isLoading } = useGetMyOrders(userId);
 
     if (isLoading) {
-        //TODO: Add  loading skeleton here
+        //TODO: Add loading skeleton here
         <span><Loader2 className="animate-spin" />Loading</span>
     }
 

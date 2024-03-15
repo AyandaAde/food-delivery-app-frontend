@@ -1,12 +1,25 @@
-import { useGetMyUser, useUpdateMyUser } from '@/api/MyUserApi'
+import { useUpdateMyUser } from '@/api/MyUserApi'
+import { getUserDetails } from '@/features/user/userSlice';
 import UserProfileForm from '@/forms/user-profile-form/UserProfileForm'
 import { useAuth } from '@clerk/clerk-react';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 export default function UserProfilePage() {
     const { userId } = useAuth();
     const { updateUser, isLoading: isUpdateLoading } = useUpdateMyUser();
-    //@ts-ignore
-    const { currentUser, isLoading: isGetLoading } = useGetMyUser(userId);
+
+    const { currentUser, isLoading: isGetLoading } = useSelector(
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        (state: any) => state.user
+    );
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        //@ts-ignore
+        dispatch(getUserDetails(userId));
+    }, []);
+
 
     if (isGetLoading) {
         return <span>Loading...</span>
@@ -15,6 +28,8 @@ export default function UserProfilePage() {
     if (!currentUser) {
         return <span>Unable to load user data.</span>
     }
+
+
 
     return (
         <div className="flex flex-col-reverse md:flex-row items-center gap-5 bg-gray-50 rounded-lg p-10">
