@@ -12,7 +12,6 @@ import SearchPage from './pages/SearchPage';
 import DetailPage from './pages/DetailPage';
 import OrderStatusPage from './pages/OrderStatusPage';
 import AboutPage from './pages/AboutPage';
-import FileUploaderPage from './pages/FileUploaderPage';
 
 const AppRoutes = () => {
     const { userId } = useAuth();
@@ -77,14 +76,6 @@ const AppRoutes = () => {
             <Route path="*" element={<Navigate to="/" />} />
             <Route path="/sign-in" element={<SignInPage />} />
             <Route path="/sign-up" element={<SignUpPage />} />
-            <Route element={<ProtectedRoute />}>
-                <Route path="/file-upload" element={
-                    <Layout showHero={false}>
-                        <FileUploaderPage
-                        />
-                    </Layout>
-                } />
-            </Route>
         </Routes>
     )
 }
