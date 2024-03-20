@@ -40,7 +40,7 @@ export async function uploadToS3(file: File) {
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     await upload.then((data) => {
-      console.log("successfully uploaded to S3!", file_key);
+      console.log("successfully uploaded to S3!", file_key, data);
     });
 
     return Promise.resolve({

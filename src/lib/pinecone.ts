@@ -78,24 +78,24 @@ async function getVectors(doc: Document) {
   }
 }
 
-async function embedDocument(doc: Document) {
-  try {
-    const embeddings = await getEmbeddings(doc.pageContent);
-    const hash = md5(doc.pageContent);
+// async function embedDocument(doc: Document) {
+//   try {
+//     const embeddings = await getEmbeddings(doc.pageContent);
+//     const hash = md5(doc.pageContent);
 
-    return {
-      id: hash,
-      values: embeddings,
-      metadata: {
-        text: doc.metadata.text,
-        pageNumber: doc.metadata.pageNumber,
-      },
-    };
-  } catch (error) {
-    console.log("Error embedding document", error);
-    throw error;
-  }
-}
+//     return {
+//       id: hash,
+//       values: embeddings,
+//       metadata: {
+//         text: doc.metadata.text,
+//         pageNumber: doc.metadata.pageNumber,
+//       },
+//     };
+//   } catch (error) {
+//     console.log("Error embedding document", error);
+//     throw error;
+//   }
+// }
 export function truncateStringByBytes(str: string, bytes: number) {
   const enc = new TextEncoder();
   return new TextDecoder("UTF-8").decode(enc.encode(str).slice(0, bytes));
