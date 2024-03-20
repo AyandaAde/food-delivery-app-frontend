@@ -13,9 +13,6 @@ export default defineConfig({
         global: true,
         process: true,
       },
-      overrides: {
-        fs: "memfs",
-      },
       protocolImports: true,
     }),
   ],
