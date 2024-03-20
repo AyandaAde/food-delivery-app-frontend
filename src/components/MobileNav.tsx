@@ -3,7 +3,7 @@ import { Sheet, SheetContent, SheetDescription, SheetTitle, SheetTrigger } from 
 import { Separator } from "./ui/separator";
 import { Button } from "./ui/button";
 import DarkModeButton from "./DarkModeButton";
-import { SignedIn, SignedOut, UserButton, useAuth, useUser } from "@clerk/clerk-react";
+import { SignedIn, SignedOut, useAuth, useUser } from "@clerk/clerk-react";
 import { Link } from "react-router-dom";
 
 
@@ -19,10 +19,7 @@ const MobileNav = () => {
             <SheetContent>
                 <SheetTitle className="flex mt-5 px-3 justify-between items-center">
                     <SignedIn>
-                        <div className="flex flex-row gap-1 items-center">
-                            <UserButton afterSignOutUrl='/sign-in' />
-                            {user?.fullName}
-                        </div>
+                        {user?.fullName}
                     </SignedIn>
                     <SignedOut>
                         Welcome to NomNom
