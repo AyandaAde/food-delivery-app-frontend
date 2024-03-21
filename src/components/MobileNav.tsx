@@ -22,7 +22,7 @@ const MobileNav = () => {
                         {user?.fullName}
                     </SignedIn>
                     <SignedOut>
-                        Welcome to NomNom
+                        Welcome to NomNom Nimbus
                     </SignedOut>
                     <DarkModeButton />
                 </SheetTitle>
