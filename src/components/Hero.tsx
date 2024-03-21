@@ -6,12 +6,17 @@ import { Link } from "react-router-dom";
 import { PizzaIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { toast } from "sonner";
 
 type Props = {
     from?: string;
 }
 const Hero = ({ from }: Props) => {
-    const [city, setCity] = useState();
+    const [city, setCity] = useState("");
+
+    function handleClick() {
+        toast.info("Please switch on your location. Alternatively enter the name of your city in the search bar below.")
+    }
 
     useEffect(() => {
         navigator.geolocation.getCurrentPosition(async (pos) => {
@@ -23,6 +28,7 @@ const Hero = ({ from }: Props) => {
         })
 
     }, []);
+
     return (
         <div className="flex flex-col md:flex-row justify-between pt-4 pb-16 items-center gap-y-3 bg-gradient-to-br dark:bg-gradient-to-tl from-violet-800 via-violet-500 to-amber-500 overflow-x-hidden">
             <img
@@ -59,7 +65,16 @@ const Hero = ({ from }: Props) => {
                 {from !== "about" &&
                     <div className="flex flex-row gap-x-2">
                         <Link to="/about" className="mt-2"><Button className="bg-purple-700">Read More</Button></Link>
-                        <Link to={`/search/${city ? city : "Harare"}`} className="mt-2"><Button className="bg-purple-700">Order Food <PizzaIcon className="ml-2" /></Button></Link>
+                        {
+                            city === "" ?
+                                <Button
+                                    className="bg-purple-700 mt-2"
+                                    onClick={handleClick}
+                                >Order Food <PizzaIcon className="ml-2" />
+                                </Button>
+                                : <Link to={`/search/${city}`} className="mt-2"><Button className="bg-purple-700">Order Food <PizzaIcon className="ml-2" /></Button></Link>
+                        }
+
                     </div>
                 }
             </div>
