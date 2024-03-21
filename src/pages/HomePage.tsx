@@ -3,7 +3,6 @@ import appDownloadImage from "../../public/images/appDownload-Photoroom.png"
 import SearchBar, { SearchForm } from "@/components/SearchBar";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { fadeRight, fadeLeft } from "../../public/animations";
 
 export default function HomePage() {
     const navigate = useNavigate()
@@ -41,18 +40,10 @@ export default function HomePage() {
                 </motion.div>
             </div>
             <div className="grid md:grid-cols-2 gap-5" id="download">
-                <motion.img
-                    initial="initial"
-                    whileInView="animate"
-                    variants={fadeRight}
-                    transition={{ duration: 1 }}
+                <img
                     src={landingImage}
                 />
-                <motion.div
-                    initial="initial"
-                    whileInView="animate"
-                    variants={fadeLeft}
-                    transition={{ duration: 1 }}
+                <div
                     className="flex flex-col items-center justify-center gap-4 text-center">
                     <span className="font-bold text-3xl tracking-tighter">
                         Order takeaway even faster!
@@ -61,7 +52,7 @@ export default function HomePage() {
                     <img
                         src={appDownloadImage}
                     />
-                </motion.div>
+                </div>
             </div>
         </div>
     )
