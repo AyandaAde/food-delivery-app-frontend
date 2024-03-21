@@ -48,7 +48,7 @@ export default function HomePage() {
                     <span className="font-bold text-3xl tracking-tighter">
                         Order takeaway even faster!
                     </span>
-                    <span>Download the NomNom app for faster ordering and personalised recommendations.</span>
+                    <span>Download the NomNom Nimbus app for faster ordering and personalised recommendations.</span>
                     <img
                         src={appDownloadImage}
                     />

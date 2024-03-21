@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Separator } from "./ui/separator";
 
 export default function Footer() {
@@ -17,7 +18,7 @@ export default function Footer() {
             <Separator className="my-5 bg-gray-400" />
             <div className="container mx-auto flex flex-col md:flex-row justify-between items-center">
                 <p className="text-gray-200 text-base">© {new Date().getFullYear()} Made by Ayanda Kinyambo</p>
-                <p className="text-gray-200 text-sm md:text-base">Support: support@nomnomnimbus.com</p>
+                <Link to="mailto:support@nomnomnimbus.com" className="text-gray-200 text-sm md:text-base">Support: support@nomnomnimbus.com</Link>
             </div>
         </div>
     )
