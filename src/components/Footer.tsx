@@ -1,9 +1,13 @@
 import { Separator } from "./ui/separator";
-
+import { motion } from "framer-motion";
 
 export default function Footer() {
     return (
-        <div className="bg-purple-700 py-5 mb-6">
+        <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+            className="bg-purple-700 py-5 mb-6">
             <div className="flex flex-col">
                 <div className="container mx-auto flex flex-col md:flex-row justify-between items-center">
                     <span className="text-2xl text-white font-bold tracking-tight">
@@ -17,6 +21,6 @@ export default function Footer() {
             </div>
             <Separator className="my-5 bg-gray-400" />
             <p className="text-gray-200 text-center relative">© {new Date().getFullYear()} Made by Ayanda Kinyambo</p>
-        </div>
+        </motion.div>
     )
 }
