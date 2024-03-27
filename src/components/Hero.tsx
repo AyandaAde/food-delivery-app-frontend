@@ -33,7 +33,7 @@ const Hero = ({ from }: Props) => {
         <div className="flex flex-col md:flex-row justify-between pt-4 pb-16 items-center gap-y-3 bg-gradient-to-br dark:bg-gradient-to-tl from-violet-800 via-violet-500 to-amber-500 overflow-x-hidden">
             <img
                 src={hero}
-                className="w-full sm:w-3/5 max-h-[700px] object-cover relative md:right-24"
+                className="hidden md:block w-full max-h-[700px] object-cover relative md:right-24"
             />
             <div className="mx-auto w-11/12 md:w-[350px] lg:w-[500px] flex flex-col items-center md:items-start gap-y-3 relative md:right-[10%]">
                 <p className="flex flex-col gap-y-1 text-xl lg:text-2xl font-semibold text-gray-50 dark:text-white">
