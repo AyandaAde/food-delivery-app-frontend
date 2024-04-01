@@ -84,7 +84,7 @@ export default function SearchPage() {
         ), 5000);
         timeOut2;
         const timeOut3 = setTimeout(() => (
-            setOpening("No results found. :(")
+            setOpening("No results found.")
         ), 5000);
         timeOut3;
         return <h1>{opening}</h1>;
