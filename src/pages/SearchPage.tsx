@@ -77,7 +77,7 @@ export default function SearchPage() {
     if (!results?.data) {
         const timeOut = setTimeout(() => (
             setOpening("No results found.")
-        ), 10000);
+        ), 20000);
 
         timeOut;
         return <h1>{opening}</h1>;
