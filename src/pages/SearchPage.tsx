@@ -77,16 +77,8 @@ export default function SearchPage() {
     if (!results?.data) {
         const timeOut1 = setTimeout(() => (
             setOpening("Checking for restaurants in your city...")
-        ), 5000);
+        ), 10000);
         timeOut1;
-        const timeOut2 = setTimeout(() => (
-            setOpening("Collecting data from our gremlins around the globe...")
-        ), 5000);
-        timeOut2;
-        const timeOut3 = setTimeout(() => (
-            setOpening("No results found.")
-        ), 5000);
-        timeOut3;
         return <h1>{opening}</h1>;
     }
 
