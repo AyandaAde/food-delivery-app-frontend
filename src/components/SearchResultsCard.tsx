@@ -33,7 +33,7 @@ export default function SearchResultsCard({ restaurant }: Props) {
                             {restaurant.estimatedDeliveryTime} mins
                         </div>
                         <div className="flex items-center gap-1">
-                            <BanknoteIcon /> Delivery from {(restaurant.deliveryPrice / 100).toFixed(2)}
+                            <BanknoteIcon /> Delivery from ${(restaurant.deliveryPrice / 100).toFixed(2)}
                         </div>
                     </div>
                 </div>
