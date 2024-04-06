@@ -76,38 +76,12 @@ export default function SearchPage() {
     }
     if (!results?.data) {
         const timeOut1 = setTimeout(() => (
-            setOpening("Checking for restaurants in your city...")
+            setOpening("No results found.")
         ), 10000);
         timeOut1;
         return <h1>{opening}</h1>;
     }
-
-    if (!city) {
-        //TODO: List all the restaurants in the database.
-        // return (
-        //     <div className="grid grid-cols-1 lg:grid-cols-[250px_1fr] gap-5">
-        //         <div id="cuisines-list">
-        //             Insert cuisines here.
-        //         </div>
-        //         <div id="main-content" className="flex flex-col">
-        //             <SearchBar searchQuery={searchState.searchQuery} onSubmit={setSearchQuery} placeHolder="Search by Cuisine or Restaurant Name" onReset={resetSearch} />
-        //             <div className="text-xl font-bold flex flex-col gap-3 justify-between lg:items-center lg:flex-row ">
-        //                 <span>
-        //                     {results.pagination.total} Restaurant(s) found in {city}{" "}
-        //                     <Link to="/" className="text-sm font-semibold underline cursor-pointer text-blue-500">Change Location</Link>
-        //                 </span>
-        //                 <div>
-        //                     Insert sort dropdown here.
-        //                     insert currency selector here
-        //                 </div>
-        //             </div>
-        //             {results.data.map((restaurant) => (
-        //                 <SearchResultsCard key={restaurant._id} restaurant={restaurant} />
-        //             ))}
-        //         </div>
-        //     </div>
-        // )
-    }
+    
     return (
         <div className="grid grid-cols-1 lg:grid-cols-[250px_1fr] gap-5">
             <div id="cuisines-list">
