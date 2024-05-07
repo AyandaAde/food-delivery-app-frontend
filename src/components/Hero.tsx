@@ -38,7 +38,7 @@ const Hero = ({ from }: Props) => {
             <div className="mx-auto w-11/12 md:w-[350px] lg:w-[500px] flex flex-col items-center md:items-start gap-y-3 relative md:right-[10%]">
                 <p className="flex flex-col gap-y-1 text-xl lg:text-2xl font-semibold text-gray-50 dark:text-white">
                     {from === "about" ?
-                        <h1 className="text-5xl flex justify-center md:block relative md:left-20">
+                        <h1 className="text-5xl relative md:left-20">
                             <Typewriter
                                 onInit={(typewriter) => {
                                     typewriter.typeString('About Us.')
