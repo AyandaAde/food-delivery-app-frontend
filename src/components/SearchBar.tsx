@@ -55,7 +55,7 @@ export default function SearchBar({ onSubmit, onReset, placeHolder, searchQuery 
                             <FormControl>
                                 <Input
                                     {...field}
-                                    className="border-none shadow-none text-xl focus-visible:ring-0"
+                                    className=`border-none shadow-none text-xl ${placeholder === "Search by city or town" && dark:text-black} focus-visible:ring-0`
                                     placeholder={placeHolder}
                                 />
                             </FormControl>
